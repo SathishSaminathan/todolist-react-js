@@ -1,4 +1,35 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting started
+```
+git clone https://sonyarouje.visualstudio.com/tracers/_git/reactjs-docker-dev
+
+git checkout master
+```
+One better approach of developing is using a docker container. 
+
+## Steps to do
+* Install docker for desktop https://www.docker.com/products/docker-desktop
+* Install the Remote development VS Code extension https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
+* Close VS Code 
+* Open docker-compose.yml in the cloned repo
+* Modify the volumes section as below
+    * For e.g. in my case the code is located in d:\sony\tracers\reactjs-docker-dev
+    * /d/sony/tracers/reactjs-docker-dev:/home/dev/src
+    * Here we are mapping our local folder to /home/dev/src directory of docker container.
+* Reopen the VS Code in the cloned repo
+* VS Code will ask to reopen the code in Container
+* Say reopen in container and after some time your code will open in container and all good to go.
+* Install all your packages 
+    * In VS Code menu Terminal->New Terminal
+    * You will be in /home/dev/src directory
+    * yarn install
+    * Wait for the packages installation to finish
+    * Once finished $yarn start/$npm start
+    * Open a browser in your local machine 
+
+Biggest advantage of this docker based development is we can have all our development related dependencies in container. For e.g. dev machine doesnt need node, npm or yarn. These dependencies are already included in docker container. 
+
+Setting up a new dev machine is very easy no need to remember what all the dependent softwares we need for the development.
 
 ## Available Scripts
 
