@@ -42,17 +42,26 @@ const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurre
 	const handleAdd = () => {
 		addTodo({ ...todo, id: uuidv4() });
 		settodo(defaultValue);
+		playAudio();
 	};
+
+	const playAudio = () => {
+		const audioEl = document.getElementsByClassName('audio-element')[0];
+		audioEl.play();
+	};
+
 	return (
-		<HomePresentational
-			time={time}
-			loading={loading}
-			todoList={todoList}
-			handleAdd={handleAdd}
-			handleChange={handleChange}
-			handleDelete={handleDelete}
-			todo={todo}
-		/>
+		<>
+			<HomePresentational
+				time={time}
+				loading={loading}
+				todoList={todoList}
+				handleAdd={handleAdd}
+				handleChange={handleChange}
+				handleDelete={handleDelete}
+				todo={todo}
+			/>
+		</>
 	);
 };
 

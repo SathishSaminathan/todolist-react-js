@@ -73,6 +73,10 @@ const TodoAdd = ({ loading, handleAdd, handleChange, todo: { title, message, due
 					</Col>
 				</Row>
 			</Col>
+			<audio className="audio-element">
+				{/* <source src={require('@assets/smb_pause.wav')}></source> */}
+				<source src="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3"></source>
+			</audio>
 		</Col>
 	);
 };
