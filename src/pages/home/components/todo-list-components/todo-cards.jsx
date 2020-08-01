@@ -1,29 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import FlipMove from 'react-flip-move';
 import { Col, Button, Row, Checkbox } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 
-const TodoCards = () => {
-	const [list, setlist] = useState([]);
-
-	const handleAdd = () => {
-		let arr = list;
-		arr.push({ name: 'hai' });
-		setlist([...arr]);
-	};
-
-	const handleRemove = () => {
-		let arr = list;
-		arr.pop();
-		setlist([...arr]);
-	};
-
-	useEffect(() => {
-		renderRows();
-	}, [list]);
-
+const TodoCards = ({ todoList }) => {
 	const renderRows = () => {
-		return list.map((data, i) => (
+		return todoList.map((data, i) => (
 			<Col key={i} xl={24} className="card_style">
 				<Row>
 					<Col xl={18}>
@@ -48,8 +30,6 @@ const TodoCards = () => {
 			<FlipMove enterAnimation="elevator" leaveAnimation="elevator">
 				{renderRows()}
 			</FlipMove>
-			<Button onClick={handleAdd}>add</Button>
-			<Button onClick={handleRemove}>remove</Button>
 		</>
 	);
 };
