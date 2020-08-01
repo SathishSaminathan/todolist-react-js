@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment';
@@ -12,13 +12,19 @@ const defaultValue = {
 	title: '',
 	message: '',
 	type: GlobalConstants.SUCCESS,
+	status: GlobalConstants.ACTIVE,
 	dueAt: new Date(),
-	id: uuidv4(),
 	timestamp: moment().format('X'),
 };
 
-const HomeFunctional = ({ todoList, addTodo, loading }) => {
+const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurrentTime }) => {
 	const [todo, settodo] = useState(defaultValue);
+
+	useEffect(() => {
+		setInterval(() => {
+			if (todoList.length > 0) setCurrentTime(moment().format(GlobalConstants.momentFormat));
+		}, 1000);
+	}, [todoList]);
 
 	const handleChange = (label, value) => {
 		let temp = {
@@ -28,25 +34,41 @@ const HomeFunctional = ({ todoList, addTodo, loading }) => {
 		settodo(temp);
 	};
 
-	console.log('todo', todo);
+	const handleDelete = (todoId) => {
+		console.log('todoList', todoList);
+		deleteTodo(todoId);
+	};
 
 	const handleAdd = () => {
-		addTodo(todo);
+		addTodo({ ...todo, id: uuidv4() });
 		settodo(defaultValue);
 	};
-	return <HomePresentational loading={loading} todoList={todoList} handleAdd={handleAdd} handleChange={handleChange} todo={todo} />;
+	return (
+		<HomePresentational
+			time={time}
+			loading={loading}
+			todoList={todoList}
+			handleAdd={handleAdd}
+			handleChange={handleChange}
+			handleDelete={handleDelete}
+			todo={todo}
+		/>
+	);
 };
 
 const mapStateToProps = (state) => {
 	return {
 		todoList: Selectors.todoList(state),
 		loading: Selectors.loading(state),
+		time: Selectors.time(state),
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		addTodo: (todo) => dispatch(Actions.creators.addTodo(todo)),
+		deleteTodo: (todoId) => dispatch(Actions.creators.deleteTodo(todoId)),
+		setCurrentTime: (time) => dispatch(Actions.creators.setCurrentTime(time)),
 	};
 };
 

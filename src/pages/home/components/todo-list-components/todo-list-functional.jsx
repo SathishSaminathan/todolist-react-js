@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import TodoListPresentational from './todo-list-presentaional';
 import { GlobalConstants } from '@constants/global-constants';
 
-const TodoListFunctional = ({ todoList }) => {
+const TodoListFunctional = ({ todoList, time, handleDelete }) => {
 	const [localTodolist, setlocalTodolist] = useState([]);
 	const [filter, setfilter] = useState({
 		type: GlobalConstants.ALL,
@@ -11,13 +11,19 @@ const TodoListFunctional = ({ todoList }) => {
 	});
 
 	const generateTodoList = (todoList) => {
-		let tempArr = todoList.filter((todo) => todo.status && todo.type);
-		setlocalTodolist(tempArr);
+		const { type, status } = filter;
+		let tempArr = [];
+		if (type === GlobalConstants.ALL) {
+			setlocalTodolist(todoList);
+		} else {
+			tempArr = todoList.filter((todo) => todo.type === type);
+			setlocalTodolist(tempArr);
+		}
 	};
 
 	useEffect(() => {
 		generateTodoList(todoList);
-	}, [todoList]);
+	}, [todoList, filter]);
 
 	const handleChange = (label, value) => {
 		let temp = {
@@ -27,7 +33,7 @@ const TodoListFunctional = ({ todoList }) => {
 		setfilter(temp);
 	};
 
-	return <TodoListPresentational filter={filter} handleChange={handleChange} todoList={localTodolist} />;
+	return <TodoListPresentational time={time} filter={filter} handleChange={handleChange} handleDelete={handleDelete} todoList={localTodolist} />;
 };
 
 export default TodoListFunctional;

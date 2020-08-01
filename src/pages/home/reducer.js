@@ -16,6 +16,12 @@ const todoReducer = (state = initState, action) => {
 				loading: !state.loading,
 			};
 		}
+		case Actions.types.SET_TIME: {
+			return {
+				...state,
+				time: action.time,
+			};
+		}
 		case Actions.types.ADD_TODO_LIST_COMPLETED: {
 			return {
 				...state,
@@ -23,7 +29,12 @@ const todoReducer = (state = initState, action) => {
 				todoList: [...state.todoList, action.todo],
 			};
 		}
-
+		case Actions.types.DELETE_TODO_LIST: {
+			return {
+				...state,
+				todoList: state.todoList.filter((todo) => todo.id !== action.todoId),
+			};
+		}
 		default:
 			return state;
 	}

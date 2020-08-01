@@ -6,7 +6,7 @@ import { GlobalConstants } from '@constants/global-constants';
 
 const { Option } = Select;
 
-const TodoListPresentational = ({ todoList, handleChange, filter: { type, status } }) => {
+const TodoListPresentational = ({ time, todoList, handleChange, handleDelete, filter: { type, status } }) => {
 	return (
 		<Col xl={12} className="list_area">
 			<Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -37,7 +37,7 @@ const TodoListPresentational = ({ todoList, handleChange, filter: { type, status
 					</Col>
 				</Row>
 			</Row>
-			<TodoCards todoList={todoList} />
+			<TodoCards todoList={todoList} time={time} handleDelete={handleDelete} />
 		</Col>
 	);
 };
