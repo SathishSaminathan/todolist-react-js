@@ -5,12 +5,12 @@ import { DeleteOutlined } from '@ant-design/icons';
 
 const TodoCards = ({ todoList }) => {
 	const renderRows = () => {
-		return todoList.map((data, i) => (
+		return todoList.map((todo, i) => (
 			<Col key={i} xl={24} className="card_style">
 				<Row>
 					<Col xl={18}>
 						<Col xl={24} className="title_area">
-							<span className="title">Title</span>
+							<span className="title">{todo.type}</span>
 							<span className="description">(Due time exceeded)</span>
 						</Col>
 						<Col xl={24}>

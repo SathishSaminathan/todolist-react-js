@@ -6,7 +6,7 @@ import { GlobalConstants } from '@constants/global-constants';
 const { TextArea } = Input;
 const { Option } = Select;
 
-const TodoAdd = ({ loading, handleAdd, handleChange, todo: { title, message, dueAt } }) => {
+const TodoAdd = ({ loading, handleAdd, handleChange, todo: { title, message, dueAt, type } }) => {
 	return (
 		<Col xl={12} className="input_area">
 			<Col>
@@ -36,7 +36,7 @@ const TodoAdd = ({ loading, handleAdd, handleChange, todo: { title, message, due
 						Type
 					</Col>
 					<Col className="input_style" style={{ width: '100%' }}>
-						<Select onChange={(value) => handleChange('type', value)} defaultValue={GlobalConstants.SUCCESS} style={{ width: 120 }}>
+						<Select onChange={(value) => handleChange('type', value)} value={type} style={{ width: 120 }}>
 							<Option value={GlobalConstants.SUCCESS}>Success</Option>
 							<Option value={GlobalConstants.ERROR}>Error</Option>
 							<Option value={GlobalConstants.WARNING}>Warning</Option>

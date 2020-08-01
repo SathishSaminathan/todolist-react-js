@@ -6,7 +6,7 @@ import { GlobalConstants } from '@constants/global-constants';
 
 const { Option } = Select;
 
-const TodoListPresentational = ({ todoList }) => {
+const TodoListPresentational = ({ todoList, handleChange, filter: { type, status } }) => {
 	return (
 		<Col xl={12} className="list_area">
 			<Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -15,7 +15,7 @@ const TodoListPresentational = ({ todoList }) => {
 						Task Status
 					</Col>
 					<Col className="input_style">
-						<Select defaultValue={GlobalConstants.ALL} style={{ width: 120 }}>
+						<Select onChange={(value) => handleChange('status', value)} value={status} style={{ width: 120 }}>
 							<Option value={GlobalConstants.ALL}>All</Option>
 							<Option value={GlobalConstants.ACTIVE}>Active</Option>
 							<Option value={GlobalConstants.COMPLETED}>Completed</Option>
@@ -27,7 +27,8 @@ const TodoListPresentational = ({ todoList }) => {
 						Type
 					</Col>
 					<Col className="input_style">
-						<Select defaultValue={GlobalConstants.ALL} style={{ width: 120 }}>
+						<Select onChange={(value) => handleChange('type', value)} value={type} style={{ width: 120 }}>
+							<Option value={GlobalConstants.ALL}>All</Option>
 							<Option value={GlobalConstants.SUCCESS}>Success</Option>
 							<Option value={GlobalConstants.ERROR}>Error</Option>
 							<Option value={GlobalConstants.WARNING}>Warning</Option>
