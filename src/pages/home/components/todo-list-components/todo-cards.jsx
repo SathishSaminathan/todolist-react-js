@@ -14,10 +14,14 @@ const TodoCards = ({ todoList, time, handleDelete, updateTodo }) => {
 			const isExceeded = constructTime(moment(todo.dueAt).format(GlobalConstants.momentFormat), time, 'isExceeded');
 			const isUnderOneHour = constructTime(moment(todo.dueAt).format(GlobalConstants.momentFormat), time, 'isUnderOneHour');
 			const isCompleted = todo.status === GlobalConstants.COMPLETED;
+			const createdAt = moment(todo.createdAt).fromNow();
 			console.log('isUnderOneHour', todo.title, isUnderOneHour);
 			return (
 				<Col key={i} xl={6} className={`card_style`}>
-					<Row className={`card_box ${isUnderOneHour ? `underOneHour` : ``} ${isExceeded ? `exceeded` : ``}`}>
+					<Row
+						className={`card_box ${isUnderOneHour && !isCompleted ? `underOneHour` : ``} ${
+							isExceeded && !isCompleted ? `exceeded` : ``
+						}`}>
 						<Col xl={24}>
 							<Col xl={24} className="title_area">
 								<Col>
@@ -48,6 +52,9 @@ const TodoCards = ({ todoList, time, handleDelete, updateTodo }) => {
 							</Col>
 							<Col xl={24}>
 								<div className="message">{todo.message}</div>
+							</Col>
+							<Col xl={24}>
+								<div>{`Created ${createdAt}`}</div>
 							</Col>
 							<Col>
 								<Tag className={todo.type}>{todo.type}</Tag>

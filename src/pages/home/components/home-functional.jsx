@@ -57,7 +57,12 @@ const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurre
 	const handleAdd = () => {
 		const { title, message, dueAt } = todo;
 		if (title && message && dueAt) {
-			addTodo({ ...todo, id: uuidv4(), photoUrl: `http://gravatar.com/avatar/${md5(`${uuidv4()}@gmail.com`)}?d=identicon` });
+			addTodo({
+				...todo,
+				createdAt: moment(),
+				id: uuidv4(),
+				photoUrl: `http://gravatar.com/avatar/${md5(`${uuidv4()}@gmail.com`)}?d=identicon`,
+			});
 			settodo(defaultValue);
 			playAudio();
 			handleModalVisible(false);
