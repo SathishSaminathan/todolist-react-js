@@ -10,7 +10,7 @@ const defaultOptions = {
 };
 
 const LottieComponent = ({ width = '100%', height = '100%', type, file }) => {
-	return <Lottie options={{ ...defaultOptions, animationData: file }} width={width} height={height} />;
+	return <Lottie isClickToPauseDisabled={true} options={{ ...defaultOptions, animationData: file }} width={width} height={height} />;
 };
 
 export default LottieComponent;
