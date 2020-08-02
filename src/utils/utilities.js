@@ -6,7 +6,7 @@ export const constructTime = (now, then, type = null) => {
 	var d = moment.duration(ms);
 	switch (type) {
 		case 'isExceeded':
-			return d.seconds() < 0;
+			return d.seconds() < 0 || d.minutes() < 0;
 		case 'isUnderOneHour':
 			return parseInt(d.asHours()) < 1;
 		default:

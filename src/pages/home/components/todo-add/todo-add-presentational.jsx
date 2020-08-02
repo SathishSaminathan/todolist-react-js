@@ -10,7 +10,7 @@ const { Option } = Select;
 const TodoAddPresentational = ({ loading, handleAdd, handleModalVisible, visible, handleChange, todo: { title, message, dueAt, type } }) => {
 	return (
 		<Col xl={24} className="add_area">
-			<Modal footer={null} title="Add Todo" visible={visible} onOk={handleAdd} onCancel={handleModalVisible}>
+			<Modal destroyOnClose footer={null} title="Add Todo" visible={visible} onOk={handleAdd} onCancel={() => handleModalVisible(false)}>
 				<Col xl={24} className="input_area">
 					<Col>
 						<Row className="input_container">
@@ -18,7 +18,12 @@ const TodoAddPresentational = ({ loading, handleAdd, handleModalVisible, visible
 								Title
 							</Col>
 							<Col className="input_style">
-								<Input value={title} placeholder="enter todo" onChange={(e) => handleChange('title', e.target.value)} />
+								<Input
+									autoFocus={visible}
+									value={title}
+									placeholder="enter todo"
+									onChange={(e) => handleChange('title', e.target.value)}
+								/>
 							</Col>
 						</Row>
 						<Row className="input_container">
@@ -69,7 +74,7 @@ const TodoAddPresentational = ({ loading, handleAdd, handleModalVisible, visible
 									onClick={handleAdd}
 									type="primary"
 									style={{ width: '100%' }}>
-									Add
+									Create (or Tell "Save")
 								</Button>
 							</Col>
 						</Row>
@@ -81,7 +86,7 @@ const TodoAddPresentational = ({ loading, handleAdd, handleModalVisible, visible
 				</Col>
 			</Modal>
 			<Button onClick={handleModalVisible} type="primary">
-				Add Todo
+				Add Todo (or Tell "Create")
 			</Button>
 		</Col>
 	);

@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TodoAddPresentational from './todo-add-presentational';
 
-const TodoAddFunctional = ({ loading, handleAdd, handleChange, todo }) => {
-	const [visible, setvisible] = useState(false);
-	const handleModalVisible = () => {
-		setvisible(!visible);
-	};
+const TodoAddFunctional = ({ loading, handleAdd, handleChange, todo, visible, handleModalVisible }) => {
 	return (
 		<TodoAddPresentational
 			loading={loading}

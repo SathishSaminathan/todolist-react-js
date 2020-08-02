@@ -8,6 +8,7 @@ import Selectors from '../selectors';
 import Actions from '../action';
 import HomePresentational from './home-presentational';
 import { GlobalConstants } from '@constants/global-constants';
+import SpeechRecognition from '@sharedComponent/speech-recognition';
 
 // const dueInitialTime = () => {
 // 	var d = new Date();
@@ -25,6 +26,7 @@ const defaultValue = {
 
 const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurrentTime, updateTodo }) => {
 	const [todo, settodo] = useState(defaultValue);
+	const [visible, setvisible] = useState(false);
 
 	useEffect(() => {
 		setInterval(() => {
@@ -44,10 +46,25 @@ const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurre
 		deleteTodo(todoId);
 	};
 
+	// const openNotification = () => {
+	// 	notification.open({
+	// 		message: 'Required!!',
+	// 		description: 'Please provide valid details to save',
+	// 		icon: <SmileOutlined style={{ color: '#108ee9' }} />,
+	// 	});
+	// };
+
 	const handleAdd = () => {
-		addTodo({ ...todo, id: uuidv4(), photoUrl: `http://gravatar.com/avatar/${md5(`${uuidv4()}@gmail.com`)}?d=identicon` });
-		settodo(defaultValue);
-		playAudio();
+		const { title, message, dueAt } = todo;
+		if (title && message && dueAt) {
+			addTodo({ ...todo, id: uuidv4(), photoUrl: `http://gravatar.com/avatar/${md5(`${uuidv4()}@gmail.com`)}?d=identicon` });
+			settodo(defaultValue);
+			playAudio();
+			handleModalVisible(false);
+		}
+		// else {
+		// 	openNotification();
+		// }
 	};
 
 	const playAudio = () => {
@@ -55,9 +72,16 @@ const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurre
 		audioEl.play();
 	};
 
+	const handleModalVisible = (value) => {
+		setvisible(value);
+	};
+
 	return (
 		<>
+			<SpeechRecognition handleModalVisible={handleModalVisible} handleAdd={handleAdd} />
 			<HomePresentational
+				visible={visible}
+				handleModalVisible={handleModalVisible}
 				time={time}
 				loading={loading}
 				todoList={todoList}

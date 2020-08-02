@@ -1,7 +1,7 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
-import { Col, Button, Row } from 'antd';
-import { DeleteOutlined, CheckSquareOutlined } from '@ant-design/icons';
+import { Col, Row, Tag, Popover } from 'antd';
+import { MoreOutlined } from '@ant-design/icons';
 import moment from 'moment';
 
 import { GlobalConstants } from '@constants/global-constants';
@@ -16,23 +16,47 @@ const TodoCards = ({ todoList, time, handleDelete, updateTodo }) => {
 			const isCompleted = todo.status === GlobalConstants.COMPLETED;
 			console.log('isUnderOneHour', todo.title, isUnderOneHour);
 			return (
-				<Col key={i} xl={8} className={`card_style`}>
+				<Col key={i} xl={6} className={`card_style`}>
 					<Row className={`card_box ${isUnderOneHour ? `underOneHour` : ``} ${isExceeded ? `exceeded` : ``}`}>
-						<Col xl={18}>
+						<Col xl={24}>
 							<Col xl={24} className="title_area">
-								<span className={`title ${isCompleted ? `completed` : ``}`}>{todo.title}</span>
-								<span className="description">
-									({isCompleted ? `Task Completed` : isExceeded ? `Due time exceeded` : `Due in ${timingValue}`})
-								</span>
+								<Col>
+									<Col>
+										<span className={`title ${isCompleted ? `completed` : ``}`}>{todo.title}</span>
+									</Col>
+									<span className="description">
+										({isCompleted ? `Task Completed` : isExceeded ? `Due time exceeded` : `Due in ${timingValue}`})
+									</span>
+								</Col>
+								<Popover
+									content={
+										<div>
+											{!isCompleted && (
+												<div className="menu_text" onClick={() => updateTodo(todo.id)}>
+													Mark as Completed
+												</div>
+											)}
+											<div className="menu_text" onClick={() => handleDelete(todo.id)}>
+												Delete
+											</div>
+										</div>
+									}
+									trigger="click"
+									placement="right">
+									<MoreOutlined />
+								</Popover>
 							</Col>
 							<Col xl={24}>
 								<div className="message">{todo.message}</div>
 							</Col>
+							<Col>
+								<Tag className={todo.type}>{todo.type}</Tag>
+							</Col>
 						</Col>
-						<Col xl={6} className="card_right">
+						{/* <Col xl={6} className="card_right">
 							{!isCompleted && <Button onClick={() => updateTodo(todo.id)} icon={<CheckSquareOutlined />} size={'middle'} />}
 							<Button onClick={() => handleDelete(todo.id)} type="primary" icon={<DeleteOutlined />} size={'middle'} />
-						</Col>
+						</Col> */}
 					</Row>
 				</Col>
 			);
