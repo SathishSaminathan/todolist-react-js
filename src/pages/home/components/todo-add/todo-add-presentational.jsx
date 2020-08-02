@@ -83,6 +83,10 @@ const TodoAddPresentational = ({ loading, handleAdd, handleModalVisible, visible
 						{/* <source src={require('@assets/smb_pause.wav')}></source> */}
 						<source src="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3"></source>
 					</audio>
+					<audio className="audio-element1">
+						<source src={require('@assets/smb_pause.wav')}></source>
+						{/* <source src="https://api.coderrocketfuel.com/assets/pomodoro-times-up.mp3"></source> */}
+					</audio>
 				</Col>
 			</Modal>
 			<Button onClick={handleModalVisible} type="primary">

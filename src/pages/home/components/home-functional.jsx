@@ -64,7 +64,7 @@ const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurre
 				photoUrl: `http://gravatar.com/avatar/${md5(`${uuidv4()}@gmail.com`)}?d=identicon`,
 			});
 			settodo(defaultValue);
-			playAudio();
+			playAudio(false);
 			handleModalVisible(false);
 		}
 		// else {
@@ -72,7 +72,8 @@ const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurre
 		// }
 	};
 
-	const playAudio = () => {
+	const playAudio = (isDelete) => {
+		const className = isDelete ? 'audio-element' : 'audio-element1';
 		const audioEl = document.getElementsByClassName('audio-element')[0];
 		audioEl.play();
 	};

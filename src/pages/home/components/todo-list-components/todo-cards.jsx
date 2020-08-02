@@ -6,6 +6,8 @@ import moment from 'moment';
 
 import { GlobalConstants } from '@constants/global-constants';
 import { constructTime } from '@utils/utilities';
+import LottieComponent from '@sharedComponent/lottie-component';
+import LottieFile from '@assets/lottiefiles';
 
 const TodoCards = ({ todoList, time, handleDelete, updateTodo }) => {
 	const renderRows = () => {
@@ -72,9 +74,13 @@ const TodoCards = ({ todoList, time, handleDelete, updateTodo }) => {
 	return (
 		<Row>
 			<Col xl={24}>
-				<FlipMove enterAnimation="elevator" leaveAnimation="none" style={{ display: 'flex', flexWrap: 'wrap' }}>
-					{renderRows()}
-				</FlipMove>
+				{todoList.length === 0 ? (
+					<LottieComponent file={LottieFile.RecordNotFound} />
+				) : (
+					<FlipMove enterAnimation="elevator" leaveAnimation="none" style={{ display: 'flex', flexWrap: 'wrap' }}>
+						{renderRows()}
+					</FlipMove>
+				)}
 			</Col>
 		</Row>
 	);
