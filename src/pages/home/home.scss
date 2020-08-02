@@ -6,7 +6,7 @@ $darkSand: #a28089;
 $success: #7ed321;
 $warning: #ffd806;
 $error: #ff5656;
-$info: #4a90e2;
+$info: #1890ff;
 $critical: #ff9966;
 .todo_container {
 	background-color: white;
@@ -38,6 +38,7 @@ $critical: #ff9966;
 		.title_text {
 			font-size: 40px;
 			font-weight: bold;
+			color: $info;
 		}
 	}
 }
