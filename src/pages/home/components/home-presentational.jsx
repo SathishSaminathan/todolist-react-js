@@ -8,7 +8,7 @@ const HomePresentational = ({ todoList, handleAdd, handleDelete, handleChange, t
 	return (
 		<Row className="todo_container">
 			<Col className="todo_box" xl={24}>
-				<Row>
+				<Row style={{ height: '100%' }}>
 					<Col xl={24} className="header">
 						Todo App
 					</Col>

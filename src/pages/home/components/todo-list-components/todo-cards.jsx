@@ -17,7 +17,6 @@ const TodoCards = ({ todoList, time, handleDelete, updateTodo }) => {
 			const isUnderOneHour = constructTime(moment(todo.dueAt).format(GlobalConstants.momentFormat), time, 'isUnderOneHour');
 			const isCompleted = todo.status === GlobalConstants.COMPLETED;
 			const createdAt = moment(todo.createdAt).fromNow();
-			console.log('isUnderOneHour', todo.title, isUnderOneHour);
 			return (
 				<Col key={i} xl={6} className={`card_style`}>
 					<Row
@@ -62,18 +61,14 @@ const TodoCards = ({ todoList, time, handleDelete, updateTodo }) => {
 								<Tag className={todo.type}>{todo.type}</Tag>
 							</Col>
 						</Col>
-						{/* <Col xl={6} className="card_right">
-							{!isCompleted && <Button onClick={() => updateTodo(todo.id)} icon={<CheckSquareOutlined />} size={'middle'} />}
-							<Button onClick={() => handleDelete(todo.id)} type="primary" icon={<DeleteOutlined />} size={'middle'} />
-						</Col> */}
 					</Row>
 				</Col>
 			);
 		});
 	};
 	return (
-		<Row>
-			<Col xl={24}>
+		<Row style={{ height: '100%' }}>
+			<Col xl={24} style={{ height: '100%' }}>
 				{todoList.length === 0 ? (
 					<LottieComponent file={LottieFile.RecordNotFound} />
 				) : (

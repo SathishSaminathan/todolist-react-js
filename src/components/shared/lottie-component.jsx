@@ -9,7 +9,7 @@ const defaultOptions = {
 	// },
 };
 
-const LottieComponent = ({ width = '70%', height = '70%', type, file }) => {
+const LottieComponent = ({ width = '100%', height = '100%', type, file }) => {
 	return <Lottie options={{ ...defaultOptions, animationData: file }} width={width} height={height} />;
 };
 

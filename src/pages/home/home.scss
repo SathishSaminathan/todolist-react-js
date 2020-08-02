@@ -35,11 +35,16 @@ $critical: #ff9966;
 	.add_area {
 		padding-top: 10px;
 		padding-left: 30px;
+		.title_text {
+			font-size: 40px;
+			font-weight: bold;
+		}
 	}
 }
 
 .input_area,
 .list_area {
+	height: 100%;
 	padding: 0 30px;
 	.card_style {
 		padding: 8px;
@@ -106,6 +111,14 @@ $critical: #ff9966;
 			}
 		}
 	}
+}
+.add_button {
+	position: absolute;
+	bottom: 0;
+	right: 5%;
+	width: 80px !important;
+	height: 80px !important;
+	z-index: 1;
 }
 .menu_text {
 	font-size: 16px !important;
