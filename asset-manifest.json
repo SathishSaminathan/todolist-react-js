@@ -1,25 +1,26 @@
 {
   "files": {
     "main.css": "/todolist-react-js/static/css/main.63f313f1.chunk.css",
-    "main.js": "/todolist-react-js/static/js/main.7f5ac0d3.chunk.js",
-    "main.js.map": "/todolist-react-js/static/js/main.7f5ac0d3.chunk.js.map",
+    "main.js": "/todolist-react-js/static/js/main.3d46292c.chunk.js",
+    "main.js.map": "/todolist-react-js/static/js/main.3d46292c.chunk.js.map",
     "runtime-main.js": "/todolist-react-js/static/js/runtime-main.13ce78f9.js",
     "runtime-main.js.map": "/todolist-react-js/static/js/runtime-main.13ce78f9.js.map",
-    "static/css/2.10ded539.chunk.css": "/todolist-react-js/static/css/2.10ded539.chunk.css",
-    "static/js/2.d566ee34.chunk.js": "/todolist-react-js/static/js/2.d566ee34.chunk.js",
-    "static/js/2.d566ee34.chunk.js.map": "/todolist-react-js/static/js/2.d566ee34.chunk.js.map",
+    "static/css/2.5d0e1685.chunk.css": "/todolist-react-js/static/css/2.5d0e1685.chunk.css",
+    "static/js/2.713532ad.chunk.js": "/todolist-react-js/static/js/2.713532ad.chunk.js",
+    "static/js/2.713532ad.chunk.js.map": "/todolist-react-js/static/js/2.713532ad.chunk.js.map",
     "index.html": "/todolist-react-js/index.html",
-    "precache-manifest.34546f03814284af5d7d3acb05244be3.js": "/todolist-react-js/precache-manifest.34546f03814284af5d7d3acb05244be3.js",
+    "precache-manifest.5084034d6a6849567bbe4a069281d973.js": "/todolist-react-js/precache-manifest.5084034d6a6849567bbe4a069281d973.js",
     "service-worker.js": "/todolist-react-js/service-worker.js",
-    "static/css/2.10ded539.chunk.css.map": "/todolist-react-js/static/css/2.10ded539.chunk.css.map",
+    "static/css/2.5d0e1685.chunk.css.map": "/todolist-react-js/static/css/2.5d0e1685.chunk.css.map",
     "static/css/main.63f313f1.chunk.css.map": "/todolist-react-js/static/css/main.63f313f1.chunk.css.map",
-    "static/js/2.d566ee34.chunk.js.LICENSE.txt": "/todolist-react-js/static/js/2.d566ee34.chunk.js.LICENSE.txt"
+    "static/js/2.713532ad.chunk.js.LICENSE.txt": "/todolist-react-js/static/js/2.713532ad.chunk.js.LICENSE.txt",
+    "static/media/smb_pause.wav": "/todolist-react-js/static/media/smb_pause.20f930b5.wav"
   },
   "entrypoints": [
     "static/js/runtime-main.13ce78f9.js",
-    "static/css/2.10ded539.chunk.css",
-    "static/js/2.d566ee34.chunk.js",
+    "static/css/2.5d0e1685.chunk.css",
+    "static/js/2.713532ad.chunk.js",
     "static/css/main.63f313f1.chunk.css",
-    "static/js/main.7f5ac0d3.chunk.js"
+    "static/js/main.3d46292c.chunk.js"
   ]
 }
