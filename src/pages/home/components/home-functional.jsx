@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment';
+import md5 from 'md5';
 
 import Selectors from '../selectors';
 import Actions from '../action';
 import HomePresentational from './home-presentational';
 import { GlobalConstants } from '@constants/global-constants';
+
+// const dueInitialTime = () => {
+// 	var d = new Date();
+// 	return d.setMinutes(d.getMinutes() + 1);
+// };
 
 const defaultValue = {
 	title: '',
@@ -17,7 +23,7 @@ const defaultValue = {
 	timestamp: moment().format('X'),
 };
 
-const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurrentTime }) => {
+const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurrentTime, updateTodo }) => {
 	const [todo, settodo] = useState(defaultValue);
 
 	useEffect(() => {
@@ -35,12 +41,11 @@ const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurre
 	};
 
 	const handleDelete = (todoId) => {
-		console.log('todoList', todoList);
 		deleteTodo(todoId);
 	};
 
 	const handleAdd = () => {
-		addTodo({ ...todo, id: uuidv4() });
+		addTodo({ ...todo, id: uuidv4(), photoUrl: `http://gravatar.com/avatar/${md5(`${uuidv4()}@gmail.com`)}?d=identicon` });
 		settodo(defaultValue);
 		playAudio();
 	};
@@ -59,6 +64,7 @@ const HomeFunctional = ({ todoList, addTodo, deleteTodo, loading, time, setCurre
 				handleAdd={handleAdd}
 				handleChange={handleChange}
 				handleDelete={handleDelete}
+				updateTodo={updateTodo}
 				todo={todo}
 			/>
 		</>
@@ -77,6 +83,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		addTodo: (todo) => dispatch(Actions.creators.addTodo(todo)),
 		deleteTodo: (todoId) => dispatch(Actions.creators.deleteTodo(todoId)),
+		updateTodo: (todoId) => dispatch(Actions.creators.updateTodo(todoId)),
 		setCurrentTime: (time) => dispatch(Actions.creators.setCurrentTime(time)),
 	};
 };

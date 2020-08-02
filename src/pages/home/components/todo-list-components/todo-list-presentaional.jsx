@@ -6,9 +6,9 @@ import { GlobalConstants } from '@constants/global-constants';
 
 const { Option } = Select;
 
-const TodoListPresentational = ({ time, todoList, handleChange, handleDelete, filter: { type, status } }) => {
+const TodoListPresentational = ({ time, todoList, handleChange, handleDelete, updateTodo, filter: { type, status } }) => {
 	return (
-		<Col xl={12} className="list_area">
+		<Col xl={24} className="list_area">
 			<Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
 				<Row className="input_container">
 					<Col className="label" xl={24}>
@@ -37,7 +37,7 @@ const TodoListPresentational = ({ time, todoList, handleChange, handleDelete, fi
 					</Col>
 				</Row>
 			</Row>
-			<TodoCards todoList={todoList} time={time} handleDelete={handleDelete} />
+			<TodoCards todoList={todoList} time={time} handleDelete={handleDelete} updateTodo={updateTodo} />
 		</Col>
 	);
 };

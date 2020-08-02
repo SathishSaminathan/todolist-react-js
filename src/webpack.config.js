@@ -281,6 +281,7 @@ module.exports = function (webpackEnv) {
 				'@assets': path.resolve('./src/assets'),
 				'@store': path.resolve('./src/store'),
 				'@constants': path.resolve('./src/constants'),
+				'@utils': path.resolve('./src/utils'),
 				'@sharedComponent': path.resolve('./src/components/shared'),
 			},
 			plugins: [

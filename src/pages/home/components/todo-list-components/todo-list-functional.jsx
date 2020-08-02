@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import TodoListPresentational from './todo-list-presentaional';
 import { GlobalConstants } from '@constants/global-constants';
 
-const TodoListFunctional = ({ todoList, time, handleDelete }) => {
+const TodoListFunctional = ({ todoList, time, handleDelete, updateTodo }) => {
 	const [localTodolist, setlocalTodolist] = useState([]);
 	const [filter, setfilter] = useState({
 		type: GlobalConstants.ALL,
@@ -12,13 +12,19 @@ const TodoListFunctional = ({ todoList, time, handleDelete }) => {
 
 	const generateTodoList = (todoList) => {
 		const { type, status } = filter;
-		let tempArr = [];
-		if (type === GlobalConstants.ALL) {
-			setlocalTodolist(todoList);
-		} else {
-			tempArr = todoList.filter((todo) => todo.type === type);
-			setlocalTodolist(tempArr);
+		let filterFields = [];
+
+		if (type !== GlobalConstants.ALL) filterFields.push({ field: 'type', value: type });
+		if (status !== GlobalConstants.ALL) filterFields.push({ field: 'status', value: status });
+
+		setlocalTodolist(todoList);
+
+		let localFilteredValues = todoList;
+		for (let index = 0; index < filterFields.length; index++) {
+			localFilteredValues = localFilteredValues.filter((todo) => todo[filterFields[index].field] === filterFields[index].value);
 		}
+
+		setlocalTodolist(localFilteredValues);
 	};
 
 	useEffect(() => {
@@ -33,7 +39,16 @@ const TodoListFunctional = ({ todoList, time, handleDelete }) => {
 		setfilter(temp);
 	};
 
-	return <TodoListPresentational time={time} filter={filter} handleChange={handleChange} handleDelete={handleDelete} todoList={localTodolist} />;
+	return (
+		<TodoListPresentational
+			updateTodo={updateTodo}
+			time={time}
+			filter={filter}
+			handleChange={handleChange}
+			handleDelete={handleDelete}
+			todoList={localTodolist}
+		/>
+	);
 };
 
 export default TodoListFunctional;

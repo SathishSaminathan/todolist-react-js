@@ -29,6 +29,15 @@ const todoReducer = (state = initState, action) => {
 				todoList: [...state.todoList, action.todo],
 			};
 		}
+		case Actions.types.UPDATE_TODO: {
+			const elementsIndex = state.todoList.findIndex((todo) => todo.id === action.todoId);
+			let newArray = [...state.todoList];
+			newArray[elementsIndex] = { ...newArray[elementsIndex], status: GlobalConstants.COMPLETED };
+			return {
+				...state,
+				todoList: newArray,
+			};
+		}
 		case Actions.types.DELETE_TODO_LIST: {
 			return {
 				...state,

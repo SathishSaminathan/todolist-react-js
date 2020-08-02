@@ -1,19 +1,19 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 
-import TodoAdd from './todo-add';
 import TodoList from './todo-list-components/todo-list-functional';
+import TodoAddFunctional from './todo-add/todo-add-functional';
 
-const HomePresentational = ({ todoList, handleAdd, handleDelete, handleChange, todo, loading, time }) => {
+const HomePresentational = ({ todoList, handleAdd, handleDelete, handleChange, todo, loading, time, updateTodo }) => {
 	return (
 		<Row className="todo_container">
-			<Col className="todo_box" xl={16}>
+			<Col className="todo_box" xl={24}>
 				<Row>
 					<Col xl={24} className="header">
 						Todo App
 					</Col>
-					<TodoAdd loading={loading} handleAdd={handleAdd} handleChange={handleChange} todo={todo} />
-					<TodoList time={time} todoList={todoList} handleDelete={handleDelete} />
+					<TodoAddFunctional loading={loading} handleAdd={handleAdd} handleChange={handleChange} todo={todo} />
+					<TodoList time={time} todoList={todoList} handleDelete={handleDelete} updateTodo={updateTodo} />
 				</Row>
 			</Col>
 		</Row>
