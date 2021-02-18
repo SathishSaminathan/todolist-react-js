@@ -17,28 +17,26 @@ const myStore = (initState = {}) => {
 	const enhancers = [];
 	let composeEnhancers = undefined;
 
-    console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
-	if (process.env.NODE_ENV !== "production") {
-		//remote debugging can be switched on/off by shaking the expo client.
-		// if (Platform.OS === 'ios') NativeModules.DevSettings.setIsDebuggingRemotely(true);
-		composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;;
-		// middleware.push(logger);
-	} else {
-		composeEnhancers = compose;
-	}
+	console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
+	// if (process.env.NODE_ENV !== "production") {
+	// 	//remote debugging can be switched on/off by shaking the expo client.
+	// 	// if (Platform.OS === 'ios') NativeModules.DevSettings.setIsDebuggingRemotely(true);
+	// 	composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;;
+	// 	// middleware.push(logger);
+	// } else {
+	// 	composeEnhancers = compose;
+	// }
+
+	composeEnhancers = compose;
 
 	// composeEnhancers = compose;
-	const store = createStore(
-		makeRootReducer(initReducers),
-		initState,
-		composeEnhancers(applyMiddleware(...middleware), ...enhancers)
-	);
+	const store = createStore(makeRootReducer(initReducers), initState, composeEnhancers(applyMiddleware(...middleware), ...enhancers));
 
 	store.asyncReducers = {};
 	store.sagaMiddleware = saga;
 	store.injectedEffects = {};
 
-	store.attachSaga = saga => {
+	store.attachSaga = (saga) => {
 		store.sagaMiddleware.run(saga);
 	};
 	injectReducers(store);
